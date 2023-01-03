@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('quantity');
         });
 
-        Schema::table('orders_product', function($table) {
+        Schema::table('orders_products', function($table) {
             //Foreign Keys
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
