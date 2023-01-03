@@ -9,11 +9,14 @@ class Carrier extends JsonResource {
 
   public function toArray($request) {
     return [
-      'id' => $this->id,
-      'names' => $this->names,
-      'orders' => OrderResource::collection($this->orders),
-      'updated_at' => $this->updated_at,
-      'created_at' => $this->created_at,
+            
+            'id' => $this->id,
+            'name' => $this->name,
+            'orders' => OrderResource::collection($this->orders),
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
+          
+
     ];
   }
 }

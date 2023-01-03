@@ -12,14 +12,14 @@ return new class extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('carrier_order', function (Blueprint $table) {
-
+        Schema::create('carriers_orders', function (Blueprint $table) {
+          $table->bigIncrements('id');
           $table->bigInteger('carrier_id')->unsigned();
           $table->bigInteger('order_id')->unsigned();
         });
 
-        Schema::table('carrier_order', function($table) {
-
+        Schema::table('carriers_orders', function($table) {
+          //Foreign Keys
           $table->foreign('carrier_id')->references('id')->on('carriers');
           $table->foreign('order_id')->references('id')->on('orders');
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carrier_order');
+        Schema::dropIfExists('carriers_orders');
     }
 };

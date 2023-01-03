@@ -11,14 +11,17 @@ return new class extends Migration {
    * @return void
    */
   public function up() {
-    Schema::create('provider_product', function (Blueprint $table) {
-
-      $table->bigInteger('provider_id')->unsigned();
-      $table->bigInteger('product_id')->unsigned();
+    Schema::create('inventories', function (Blueprint $table) {
+      // Basic schema defintion
+      $table->bigIncrements('id');
+      $table->integer('quantity');
+      $table->date('available_date')->default("2019-03-01");
+      $table->unsignedBigInteger('product_id');
+      $table->timestamps();
     });
 
-    Schema::table('provider_product', function($table) {
-      $table->foreign('provider_id')->references('id')->on('providers');
+    Schema::table('inventories', function($table) {
+      //Foreign Keys
       $table->foreign('product_id')->references('id')->on('products');
     });
   }
@@ -29,6 +32,6 @@ return new class extends Migration {
    * @return void
    */
   public function down() {
-    Schema::dropIfExists('provider_product');
+    Schema::dropIfExists('inventories');
   }
 };

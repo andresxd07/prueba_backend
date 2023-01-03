@@ -13,5 +13,4 @@ class InventoryRepository implements InventoryRepositoryInterface
     {
         return Inventory:: all();  //Consultar el inventario
     }
-
 }

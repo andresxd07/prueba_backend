@@ -5,12 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
 
+    protected $table = 'products';
+
+
   public function orders() {
-    return $this->belongsToMany('App\Order', 'order_product');
+    return $this->belongsToMany('App\Order', 'orders_products');
   }
 
   public function providers() {
-    return $this->belongsToMany('App\Provider', 'provider_product');
+    return $this->belongsToMany('App\Provider', 'providers_products');
   }
 
   public function inventories() {
@@ -18,35 +21,35 @@ class Product extends Model {
 }
 
 public static function getOrderedSelledProductsByDate($date, $order) {
-    return Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
-      ->leftJoin('orders', 'order_product.order_id', '=', 'orders.id')
-      ->where('orders.deliveryDate', $date)
-      ->orderBy('order_product.quantity', $order)
-      ->get(['products.id', 'products.name', 'order_product.quantity']);
+    return Product::leftJoin('orders_products', 'products.id', '=', 'orders_products.products_id')
+      ->leftJoin('orders', 'orders_products.orders_id', '=', 'orders.id')
+      ->where('orders.delivery_date', $date)
+      ->orderBy('orders_products.quantity', $order)
+      ->get(['products.id', 'products.name', 'orders_products.quantity']);
   }
 
-  public static function getInventaryAfterSales($date_sales, $date_revision) {
-    return Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
-      ->leftJoin('orders', 'order_product.order_id', '=', 'orders.id')
-      ->leftJoin('inventory', 'inventory.product_id', '=', 'products.id')
+  public static function getInventaryAfterSales($date_sales = 2019-03-01, $date_revision = 2019-03-02) {
+    return Product::leftJoin('orders_products', 'products.id', '=', 'orders_products.products_id')
+      ->leftJoin('orders', 'orders_products.orders_id', '=', 'orders.id')
+      ->leftJoin('inventories', 'inventories.products_id', '=', 'products.id')
       ->where([
-        ['orders.deliveryDate', '=', $date_sales->default("2019-03-01")],
-        ['inventory.availableDate', '=', $date_revision->default("2019-03-02")]
+        ['orders.delivery_date', '=', $date_sales],
+        ['inventory.available_date', '=', $date_revision]
       ])
-      ->selectRaw('products.id, products.name, (products_orders.quantity - inventory.quantity) as calculated_cuantity')
+      ->selectRaw('products.id, products.name, (orders_products.quantity - inventor.quantity) as calculated_quantity')
       ->get();
 
 }
 
-public static function getProductsAvailability($order_id, $operator) {
-    return Product::leftJoin('order_product', 'products.id', '=', 'order_product.product_id')
-      ->leftJoin('orders', 'order_product.order_id', '=', 'orders.id')
-      ->leftJoin('inventory', 'inventory.product_id', '=', 'products.id')
+public static function getProductsAvailability($orders_id, $operator) {
+    return Product::leftJoin('orders_products', 'products.id', '=', 'orders_products.products_id')
+      ->leftJoin('orders', 'orders_products.orders_id', '=', 'orders.id')
+      ->leftJoin('inventories', 'inventories.products_id', '=', 'products.id')
       ->where([
-        ['orders.id', '=', $order_id],
-        ['order_product.quantity', $operator, 'inventory.quantity']
+        ['orders.id', '=', $orders_id],
+        ['orders_products.quantity', $operator, 'inventories.quantity']
       ])
-      ->get(['products.id', 'products.name', 'order_product.quantity as order_quantity', 'inventory.quantity as inventory_quantity']);
+      ->get(['products.id', 'products.name', 'orders_products.quantity as order_quantity', 'inventories.quantity as inventories_quantity']);
   }
 
 }

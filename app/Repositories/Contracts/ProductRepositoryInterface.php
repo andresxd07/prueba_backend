@@ -13,5 +13,7 @@ Interface ProductRepositoryInterface
 
     public function getMostSelledProducts($request);
 
+    public function getOrderedProductsSoldByDate($request,$order);
+
 
 }

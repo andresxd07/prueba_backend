@@ -4,24 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventoryTable extends Migration {
+return new class extends Migration {
   /**
    * Run the migrations.
    *
    * @return void
    */
   public function up() {
-    Schema::create('inventory', function (Blueprint $table) {
-      // Basic schema defintion
-      $table->bigIncrements('id');
-      $table->integer('quantity');
-      $table->date('availableDate')->default("2019-03-01");
-      $table->unsignedBigInteger('product_id');
-      $table->timestamps();
-    });
+    Schema::create('providers_products', function (Blueprint $table) {
 
-    Schema::table('inventory', function($table) {
-      // References - Foreign keys
+      $table->bigIncrements('id');
+      $table->bigInteger('provider_id')->unsigned();
+      $table->bigInteger('product_id')->unsigned();
+    });
+    //Foreign Keys
+    Schema::table('providers_products', function($table) {
+      $table->foreign('provider_id')->references('id')->on('providers');
       $table->foreign('product_id')->references('id')->on('products');
     });
   }
@@ -32,6 +30,6 @@ class CreateInventoryTable extends Migration {
    * @return void
    */
   public function down() {
-    Schema::dropIfExists('inventory');
+    Schema::dropIfExists('providers_products');
   }
-}
+};

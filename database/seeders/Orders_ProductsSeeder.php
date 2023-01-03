@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Order_ProductSeeder extends Seeder
+class Orders_ProductsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class Order_ProductSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order_product')->insert([[
+        DB::table('orders_products')->insert([[
             'id' => '1',
             'order_id' => '1',
             'product_id' => '1',
@@ -345,9 +345,6 @@ class Order_ProductSeeder extends Seeder
             'product_id' => '28',
             'quantity' => '1',
          ]
-
-
-
      ]);
      }
  }

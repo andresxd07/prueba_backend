@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->string('name');
-
-            $table->date('availableDate')->default("2019-03-01");
+            $table->date('available_date')->default("2019-03-01");
             $table->timestamps();
         });
     }
@@ -29,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-
-
         Schema::dropIfExists('products');
     }
 };

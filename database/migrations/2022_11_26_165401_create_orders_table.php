@@ -19,8 +19,8 @@ return new class extends Migration
 
             $table->smallInteger('priority');
             $table->string('address');
-            $table->string('nameClient');
-            $table->date('deliveryDate')->default("2019-03-01");
+            $table->string('name_client');
+            $table->date('delivery_date')->default("2019-03-01");
             $table->timestamps();
         });
     }

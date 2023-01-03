@@ -12,8 +12,8 @@ class Order extends JsonResource {
       'id' => $this->id,
       'priority' => $this->priority,
       'address' => $this->address,
-      'nameClient' => $this->personName,
-      'deliveryDate' => $this->deliveryDate,
+      'name_clients' => $this->name_clients,
+      'delivery_date' => $this->delivery_date,
       'products' => ProductResource::collection($this->products)
     ];
   }

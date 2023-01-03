@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class OrderSeeder extends Seeder
+class OrdersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,90 +20,90 @@ class OrderSeeder extends Seeder
               'id' => '1',
               'priority' => '1',
               'address' => 'KR 14 # 87 - 20 ',
-              'nameClient' => 'Sofia'
+              'name_client' => 'Sofia'
            ],
            [
             'id' => '2',
             'priority' => '1',
             'address' => 'KR 20 # 164A - 5',
-            'nameClient' => 'Angel'
+            'name_client' => 'Angel'
          ],
          [
             'id' => '3',
             'priority' => '3',
             'address' => 'KR 13 # 74 - 38 ',
-            'nameClient' => 'Hocks'
+            'name_client' => 'Hocks'
          ],
          [
             'id' => '4',
             'priority' => '1',
             'address' => 'CL 93 # 12 - 9 ',
-            'nameClient' => 'Michael'
+            'name_client' => 'Michael'
          ],
          [
             'id' => '5',
             'priority' => '1',
             'address' => 'CL 71 # 3 - 74 ',
-            'nameClient' => 'Bar de Alex'
+            'name_client' => 'Bar de Alex'
          ],
          [
             'id' => '6',
             'priority' => '2',
             'address' => 'KR 20 # 134A - 5 ',
-            'nameClient' => 'Sabor Criollo'
+            'name_client' => 'Sabor Criollo'
          ],
          [
             'id' => '7',
             'priority' => '2',
             'address' => 'CL 80 # 14 - 38',
-            'nameClient' => 'El Pollo Rojo'
+            'name_client' => 'El Pollo Rojo'
          ],
          [
             'id' => '8',
             'priority' => '7',
             'address' => 'KR 14 # 98 - 74 ',
-            'nameClient' => 'All Salad'
+            'name_client' => 'All Salad'
          ] ,
          [
             'id' => '9',
             'priority' => '1',
             'address' => 'KR 58 # 93 - 1',
-            'nameClient' => 'Parrilla y Sabor'
+            'name_client' => 'Parrilla y Sabor'
          ],
          [
             'id' => '15',
             'priority' => '9',
             'address' => 'KR 14 # 87 - 20',
-            'nameClient' => 'Sofia'
+            'name_client' => 'Sofia'
          ],
          [
             'id' => '10',
             'priority' => '1',
             'address' => 'CL 93B # 17 - 12 ',
-            'nameClient' => 'Restaurante Yerbabuena'
+            'name_client' => 'Restaurante Yerbabuena'
          ],
          [
             'id' => '11',
             'priority' => '10',
             'address' => 'KR 68D # 98A - 11',
-            'nameClient' => 'Luis David'
+            'name_client' => 'Luis David'
          ],
          [
             'id' => '12',
             'priority' => '2',
             'address' => 'AC 72 # 20 - 45',
-            'nameClient' => 'David Carruyo'
+            'name_client' => 'David Carruyo'
          ],
          [
             'id' => '13',
             'priority' => '3',
             'address' => 'KR 22 # 122 - 57',
-            'nameClient' => 'Mario'
+            'name_client' => 'Mario'
          ], [
             'id' => '14',
             'priority' => '8',
             'address' => 'KR 88 # 72A - 26',
-            'nameClient' => 'Harold'
+            'name_client' => 'Harold'
          ]
        ]);
        }

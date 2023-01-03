@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\Carrier as CarrierResource;
-use Illuminate\Http\RedirectResponse;
 use App\Repositories\Contracts\CarrierRepositoryInterface;
 
-class Carrier extends Controller {
+class CarrierController extends Controller {
 
-    private $carrierRepository;
+    private CarrierRepositoryInterface $carrierRepository;
+
     public function __construct(CarrierRepositoryInterface $carrierRepository)
     {
         $this->carrierRepository = $carrierRepository;
@@ -20,13 +20,10 @@ class Carrier extends Controller {
     public function index()
     {
         {
-            $carrier =  $this->carrierRepository->getAllCarriers();
-            return CarrierResource::collection($carrier);
+            $carriers  =  $this->carrierRepository->getAllCarriers();
+            return CarrierResource::collection($carriers);
         }
 
     }
-    /** *
-     * @return RedirectResponse
-    */
 }
 

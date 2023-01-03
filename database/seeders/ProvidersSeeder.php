@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProviderSeeder extends Seeder
+class ProvidersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class ProviderSeeder extends Seeder
     public function run()
     {
         DB::table('providers')->insert([[
-            'id' => '1',
+               'id' => '1',
                'name' => 'Ruby',
            ],
            [
