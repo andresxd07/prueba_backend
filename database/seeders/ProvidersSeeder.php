@@ -16,15 +16,15 @@ class ProvidersSeeder extends Seeder
     public function run()
     {
         DB::table('providers')->insert([[
-               'id' => '1',
+               'id' => 1,
                'name' => 'Ruby',
            ],
            [
-               'id' => '2',
+               'id' => 2,
                'name' => 'Raul',
            ],
            [
-               'id' => '3',
+               'id' => 3,
                'name' => 'Angelica',
            ]
        ]);

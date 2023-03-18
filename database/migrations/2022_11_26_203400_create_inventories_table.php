@@ -14,8 +14,9 @@ return new class extends Migration {
     Schema::create('inventories', function (Blueprint $table) {
       // Basic schema defintion
       $table->bigIncrements('id');
+      $table->string('product_name');
       $table->integer('quantity');
-      $table->date('available_date')->default("2019-03-01");
+      $table->date('available_date')->default("2019-03-02");
       $table->unsignedBigInteger('product_id');
       $table->timestamps();
     });

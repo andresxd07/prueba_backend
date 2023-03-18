@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Carrier as CarrierResource;
 use App\Repositories\Contracts\CarrierRepositoryInterface;
 
 class CarrierController extends Controller {
@@ -19,11 +18,9 @@ class CarrierController extends Controller {
     */
     public function index()
     {
-        {
-            $carriers  =  $this->carrierRepository->getAllCarriers();
-            return CarrierResource::collection($carriers);
-        }
+        $carrier = $this->carrierRepository->getAllCarriers();
+        // return CarrierResource::collection($carrier);
+    return response()->json($carrier);
 
     }
 }
-

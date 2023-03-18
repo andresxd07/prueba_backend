@@ -6,8 +6,7 @@ use App\Repositories\InventoryRepository;
 use App\Repositories\CarrierRepository;
 use App\Repositories\Contracts\InventoryRepositoryInterface;
 use App\Repositories\Contracts\CarrierRepositoryInterface;
-
-
+use App\Repositories\Contracts\OrderRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider {
@@ -16,6 +15,7 @@ class RepositoriesServiceProvider extends ServiceProvider {
 
         InventoryRepositoryInterface::class => InventoryRepository::class,
         CarrierRepositoryInterface::class => CarrierRepository::class,
+        OrderRepositoryInterface::class => OrderRepository::class,
 
     ];
 

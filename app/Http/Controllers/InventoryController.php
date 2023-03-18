@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\Inventory as InventoryResource;
 use App\Repositories\Contracts\InventoryRepositoryInterface;
 
 class InventoryController extends Controller {
@@ -20,8 +19,10 @@ class InventoryController extends Controller {
     public function index()
     {
         {
-            $inventories =  $this->inventoryRepository->getAllInventory();
-            return InventoryResource::collection($inventories);
+            $inventory = $this->inventoryRepository->getAllInventory();
+            // return InventoryResource::collection($inventory);
+
+             return response()->json($inventory);
         }
     }
 }

@@ -3,19 +3,17 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model {
+class Order_Product extends Model {
 
-    protected $table = 'orders';
-
+    protected $table = 'orders_products';
+    
     protected $fillable = [
-        'id',
-        'priority',
-        'address',
-        'name_client'
+        'product_id',
+        'quantity',
     ];
 
   public function products() {
-    return $this->belongsToMany('App\Models\Product', 'orders_products');
+    return $this->belongsToMany('App\Models\Product', 'orders_products')->orderBy('quantity');;
   }
 
   public function carriers() {

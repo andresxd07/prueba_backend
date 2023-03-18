@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
-Route::get('/carriers-orders', [CarrierController::class, 'index'])->name('carrier.index');
-Route::get('/most-products-sold', [ProductController::class, 'getMostSelledProducts'])->name('product.getMostSelledProducts');
-Route::get('/less-products-sold', [ProductController::class, 'getLessSelledProducts'])->name('product.getLesstSelledProducts');
-Route::get('/products-availability', [ProductController::class, 'getProductsAvailability'])->name('product.getProductsAvailability');
+Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+Route::get('/products-sold', [OrderController::class, 'productsSold'])->name('order.productsSold');
+Route::get('/products-less-sold', [OrderController::class, 'productsLessSold'])->name('order.productsLessSold');
+Route::get('/order/{order}', [OrderController::class, 'orderByid'])->name('order.orderByid');
+Route::get('/carrier-orders', [CarrierController::class, 'index'])->name('carrier.index');
+Route::get('/products-most-sold', [OrderController::class, 'productsMostSold'])->name('product.productsMostSold');
 Route::get('/inventory-updated', [ProductController::class, 'getInventaryAfterSales'])->name('product.getInventaryAfterSales');
 
 
