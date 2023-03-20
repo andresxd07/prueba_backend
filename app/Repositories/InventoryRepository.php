@@ -14,8 +14,7 @@ class InventoryRepository implements InventoryRepositoryInterface
 
     public function inventoryUpdate()
     {
-        $inventoryrest = Inventory::selectRaw('product_name, SUM(require_products - quantity) as productos_por_alistar')
-        ->groupBy('product_name')
+        $inventoryrest = Inventory::selectRaw('product_name, SUM(quantity - require_products) as inventario')        ->groupBy('product_name')
         ->get();
 
         return response()->json($inventoryrest);
