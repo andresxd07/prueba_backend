@@ -2,71 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Order_Product;
-use App\Models\Inventory;
+use App\Repositories\Contracts\OrderRepositoryInterface;
 
 class OrderController extends Controller {
 
-//private OrderRepositoryInterface $orderRepository;
+    private OrderRepositoryInterface $orderRepository;
 
-//public function __construct(OrderRepositoryInterface $orderRepository)
-/**
- * Muestra la lista de los pedidos*/
-// {
-//     $this->orderRepository = $orderRepository;
-// }
-//  /**
-// * @return \Illuminate\Http\Response
-// * Consultar las ordenes
-// */
-// public function index()
-// {
-//     {
-//         $order = $this->orderRepository->getallOrders();
-
-//     return response()->json($order);
-
-//     }
-//     }
-  /**
-    * @return \Illuminate\Http\Response
-    * Consultar los ordenes 
-    */
+    public function __construct(OrderRepositoryInterface $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
+     /**
+   * @return \Illuminate\Http\Responsejson
+   * Consultar todas las ordenes
+   */
     public function index()
     {
-        return Order::all();
+           $order = $this->orderRepository->getAllOrders();
+           return response()->json($order);
     }
 
-/**  Muestra los productos y su respectiva cantidad que hay en las ordenes
-*/
-    public function productsSold()
-    {
-        $products = Order_Product::select(['product_id', 'quantity'])->get();
-        return response ()->json($products);
-    }
-
-/**  Muestra los productos menos vendidos
- *
+/**
+ *  @return \Illuminate\Http\Responsejson
+ *  Muestra los productos menos vendidos
 */
     public function productsLessSold()
     {
-        $products = Order_Product::orderBy('quantity','ASC')->get();
-        return response ()->json($products);
+           $order = $this->orderRepository->productsLessSold();
+           return response()->json($order);
     }
 
-
-/**Muestra los productos mas vendidos */
-
+/**
+ *    @return \Illuminate\Http\Responsejson
+ *    Muestra los productos mas vendidos
+ */
     public function productsMostSold()
     {
-        $products = Order_Product::orderBy('quantity','DESC')->get();
-        return response ()->json($products);
+            $order = $this->orderRepository->productsMostSold();
+            return response()->json($order);
     }
 
-/**Muestra una orden */
-    public function orderById($order){
-        return Order::find($order);
+/**
+ *  @return \Illuminate\Http\Responsejson
+ * Muestra una orden consultando por su id
+*/
+    public function orderById(int $order)
+    {
+        $order = $this->orderRepository->orderById($order);
+        return response()->json($order);
     }
 }
 

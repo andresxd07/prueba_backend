@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Product extends Model {
 
     protected $table = 'orders_products';
-    
+
     protected $fillable = [
         'product_id',
         'quantity',
@@ -14,10 +14,6 @@ class Order_Product extends Model {
 
   public function products() {
     return $this->belongsToMany('App\Models\Product', 'orders_products')->orderBy('quantity');;
-  }
-
-  public function carriers() {
-    return $this->belongsToMany('App\Models\Carrier');
   }
 
 }

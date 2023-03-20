@@ -14,15 +14,16 @@ return new class extends Migration {
     Schema::create('providers_products', function (Blueprint $table) {
 
       $table->bigIncrements('id');
-      $table->bigInteger('provider_id')->unsigned();
       $table->bigInteger('product_id')->unsigned();
+      $table->string('provider');
+      $table->string('product_name');
+      $table->bigInteger('quantity');
     });
-    //Foreign Keys
-    Schema::table('providers_products', function($table) {
-      $table->foreign('provider_id')->references('id')->on('providers');
-      $table->foreign('product_id')->references('id')->on('products');
-    });
-  }
+
+
+
+    }
+
 
   /**
    * Reverse the migrations.

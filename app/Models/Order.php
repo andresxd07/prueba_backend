@@ -7,13 +7,6 @@ class Order extends Model {
 
     protected $table = 'orders';
 
-    protected $fillable = [
-        'id',
-        'priority',
-        'address',
-        'name_client'
-    ];
-
   public function products() {
     return $this->belongsToMany('App\Models\Product', 'orders_products');
   }

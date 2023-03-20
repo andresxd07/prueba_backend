@@ -17,6 +17,8 @@ return new class extends Migration {
       $table->string('product_name');
       $table->integer('quantity');
       $table->date('available_date')->default("2019-03-02");
+      $table->integer('require_products');
+      $table->integer('missing');
       $table->unsignedBigInteger('product_id');
       $table->timestamps();
     });

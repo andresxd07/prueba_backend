@@ -13,16 +13,32 @@ class InventoryController extends Controller {
         $this->inventoryRepository = $inventoryRepository;
     }
      /**
-   * @return \Illuminate\Http\Response
+   * @return \Illuminate\Http\Responsejson
    * Consultar el inventario y que productos hay en el
    */
     public function index()
     {
-        {
             $inventory = $this->inventoryRepository->getAllInventory();
-            // return InventoryResource::collection($inventory);
+           return response()->json($inventory);
+    }
+    /**
+    * @return \Illuminate\Http\Responsejson
+     * Inventario actualizado
+     */
 
-             return response()->json($inventory);
-        }
+    public function inventoryUpdate()
+    {
+            $inventory = $this->inventoryRepository->inventoryUpdate();
+           return response()->json($inventory);
+    }
+     /**
+    * @return \Illuminate\Http\Responsejson
+     * Productos que se pueden abastecer mediante servicio de inventario
+     */
+
+    public function inventoryAvailable()
+    {
+        $inventory = $this->inventoryRepository->inventoryAvailable();
+        return response()->json($inventory);
     }
 }

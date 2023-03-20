@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
-use Illuminate\Support\Facades\Validator;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 
 class ProductController extends Controller {
 
-    public function getInventaryAfterSales(Request $request) {
-        $validator = Validator::make($request->all(), [
-          'date_sales' => 'required',
-          'date_revision' => 'required'
-        ]);
 
-        if ($validator->fails()) {
-        
-            return response()->json(['errors' => $validator->errors()], 400);
-        }
+    private ProductRepositoryInterface $productRepository;
 
-        else {
-          $products = Product::getInventaryAfterSales($request->get('date_sales'), $request->get('date_revision'));
-          return $products;
-        }
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+     /**
+   * @return \Illuminate\Http\Responsejson
+    * Productos requeridos
+    */
+      public function sumProducts()
+      {
+          $product = $this->productRepository->sumProducts();
+          return response()->json($product);
       }
-
 }

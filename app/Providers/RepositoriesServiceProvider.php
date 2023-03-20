@@ -3,10 +3,13 @@
 namespace App\Providers;
 
 use App\Repositories\InventoryRepository;
-use App\Repositories\CarrierRepository;
+use App\Repositories\ProviderRepository;
+use App\Repositories\OrderRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\Contracts\InventoryRepositoryInterface;
-use App\Repositories\Contracts\CarrierRepositoryInterface;
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Contracts\ProviderRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider {
@@ -14,8 +17,9 @@ class RepositoriesServiceProvider extends ServiceProvider {
     protected $classes = [
 
         InventoryRepositoryInterface::class => InventoryRepository::class,
-        CarrierRepositoryInterface::class => CarrierRepository::class,
         OrderRepositoryInterface::class => OrderRepository::class,
+        ProviderRepositoryInterface::class => ProviderRepository::class,
+        ProductRepositoryInterface::class => ProductRepository::class,
 
     ];
 
